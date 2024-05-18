@@ -2,6 +2,8 @@ package com.toystore.toystore.service;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,15 +12,15 @@ import com.toystore.toystore.entity.UserDetails;
 import com.toystore.toystore.model.User;
 import com.toystore.toystore.repository.LoginRepository;
 
-import jakarta.servlet.http.HttpSession;
-
+ 
 @Service
 public class LoginService {
 
     @Autowired
     LoginRepository repo;
 
-    public ResponseEntity<Boolean> validateUser(User user, HttpSession session) {
+    public ResponseEntity<Boolean> validateUser(User user, HttpSession
+    		session) {
         UserDetails userDetails = null;
         Optional<UserDetails> userInfo = repo.findByUsername(user.getUsername());
         if (!userInfo.isPresent()) {
